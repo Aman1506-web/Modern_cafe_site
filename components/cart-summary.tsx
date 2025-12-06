@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
-const OWNER_NUMBER = "918888888888"; // replace with real owner number when ready
+const OWNER_NUMBER = "919654248879"; // replace with real owner number when ready
 
 export function CartSummary({ className }: { className?: string }) {
   const items = useCartStore((s) => s.items);
