@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const OWNER_NUMBER = "918888888888"; // replace with real number
+const OWNER_NUMBER = "919654248879"; // replace with real number
 
 export default function ReservePage() {
   const [form, setForm] = useState({
