@@ -30,6 +30,7 @@ export function CartDrawer({ triggerContent, triggerClassName }: CartDrawerProps
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [mode, setMode] = useState("pickup");
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; email?: string }>({});
 
   const { count, total } = useMemo(() => {
     const count = items.reduce((sum, item) => sum + item.quantity, 0);
@@ -38,7 +39,18 @@ export function CartDrawer({ triggerContent, triggerClassName }: CartDrawerProps
   }, [items]);
 
   const handleSend = () => {
-    if (!name || !phone || items.length === 0) return;
+    const nextErrors: typeof errors = {};
+    if (!name.trim()) nextErrors.name = "Name is required";
+    if (!phone.trim()) {
+      nextErrors.phone = "Phone is required";
+    } else if (!/^[0-9+\-\s]{8,15}$/.test(phone.trim())) {
+      nextErrors.phone = "Enter a valid phone number";
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      nextErrors.email = "Enter a valid email";
+    }
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0 || items.length === 0) return;
     const lines = items
       .map((item) => `${item.quantity}x ${item.name} – ₹${item.price * item.quantity}`)
       .join("\n");
@@ -186,6 +198,9 @@ export function CartDrawer({ triggerContent, triggerClassName }: CartDrawerProps
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+              {errors.name ? (
+                <p className="text-xs font-medium text-red-600">{errors.name}</p>
+              ) : null}
             </div>
             <div className="space-y-2">
               <Label htmlFor="phone">Phone number</Label>
@@ -195,6 +210,9 @@ export function CartDrawer({ triggerContent, triggerClassName }: CartDrawerProps
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
+              {errors.phone ? (
+                <p className="text-xs font-medium text-red-600">{errors.phone}</p>
+              ) : null}
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email (optional)</Label>
@@ -204,6 +222,9 @@ export function CartDrawer({ triggerContent, triggerClassName }: CartDrawerProps
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {errors.email ? (
+                <p className="text-xs font-medium text-red-600">{errors.email}</p>
+              ) : null}
             </div>
             <div className="space-y-2">
               <Label>Mode</Label>

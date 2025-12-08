@@ -20,6 +20,7 @@ export default function ReservePage() {
     time: "",
     notes: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,7 +29,21 @@ export default function ReservePage() {
   };
 
   const handleSend = () => {
-    if (!form.name || !form.phone || !form.date || !form.time) return;
+    const nextErrors: Record<string, string> = {};
+    if (!form.name.trim()) nextErrors.name = "Name is required";
+    if (!form.phone.trim()) {
+      nextErrors.phone = "Phone is required";
+    } else if (!/^[0-9+\-\s]{8,15}$/.test(form.phone.trim())) {
+      nextErrors.phone = "Enter a valid phone number";
+    }
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      nextErrors.email = "Enter a valid email";
+    }
+    if (!form.guests || Number(form.guests) < 1) nextErrors.guests = "Guests must be at least 1";
+    if (!form.date) nextErrors.date = "Date is required";
+    if (!form.time) nextErrors.time = "Time is required";
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
     const message = [
       "Table reservation request:",
       `Name: ${form.name}`,
@@ -59,72 +74,84 @@ export default function ReservePage() {
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="name">Full name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Jane Doe"
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="98765 43210"
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email (optional)</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="you@example.com"
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="guests">Number of guests</Label>
-                <Input
-                  id="guests"
-                  name="guests"
-                  type="number"
-                  min={1}
-                  value={form.guests}
-                  onChange={handleChange}
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="date">Date</Label>
-                <Input
-                  id="date"
-                  name="date"
-                  type="date"
-                  value={form.date}
-                  onChange={handleChange}
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="time">Time</Label>
-                <Input
-                  id="time"
-                  name="time"
-                  type="time"
-                  value={form.time}
-                  onChange={handleChange}
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
+              <Label htmlFor="name">Full name</Label>
+              <Input
+                id="name"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Jane Doe"
+                className="rounded-full bg-amber-50"
+              />
+              {errors.name ? <p className="text-xs font-medium text-red-600">{errors.name}</p> : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone</Label>
+              <Input
+                id="phone"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="98765 43210"
+                className="rounded-full bg-amber-50"
+              />
+              {errors.phone ? (
+                <p className="text-xs font-medium text-red-600">{errors.phone}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email (optional)</Label>
+              <Input
+                id="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+                className="rounded-full bg-amber-50"
+              />
+              {errors.email ? (
+                <p className="text-xs font-medium text-red-600">{errors.email}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="guests">Number of guests</Label>
+              <Input
+                id="guests"
+                name="guests"
+                type="number"
+                min={1}
+                value={form.guests}
+                onChange={handleChange}
+                className="rounded-full bg-amber-50"
+              />
+              {errors.guests ? (
+                <p className="text-xs font-medium text-red-600">{errors.guests}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="date">Date</Label>
+              <Input
+                id="date"
+                name="date"
+                type="date"
+                value={form.date}
+                onChange={handleChange}
+                className="rounded-full bg-amber-50"
+              />
+              {errors.date ? <p className="text-xs font-medium text-red-600">{errors.date}</p> : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="time">Time</Label>
+              <Input
+                id="time"
+                name="time"
+                type="time"
+                value={form.time}
+                onChange={handleChange}
+                className="rounded-full bg-amber-50"
+              />
+              {errors.time ? <p className="text-xs font-medium text-red-600">{errors.time}</p> : null}
+            </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="notes">Special request</Label>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { HeroCarousel } from "@/components/hero-carousel";
 import {
   CravingPills,
@@ -10,10 +13,19 @@ import {
 } from "@/components/home-sections";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { LoaderOverlay } from "@/components/loader-overlay";
 
 export default function Home() {
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowLoader(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-cream">
+      {showLoader ? <LoaderOverlay /> : null}
       <Navbar />
       <main className="pb-12">
         <HeroCarousel />

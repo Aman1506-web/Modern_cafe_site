@@ -18,6 +18,7 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,7 +27,19 @@ export default function ContactPage() {
   };
 
   const handleSend = () => {
-    if (!form.name || !form.phone || !form.message) return;
+    const nextErrors: Record<string, string> = {};
+    if (!form.name.trim()) nextErrors.name = "Name is required";
+    if (!form.phone.trim()) {
+      nextErrors.phone = "Phone is required";
+    } else if (!/^[0-9+\-\s]{8,15}$/.test(form.phone.trim())) {
+      nextErrors.phone = "Enter a valid phone number";
+    }
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      nextErrors.email = "Enter a valid email";
+    }
+    if (!form.message.trim()) nextErrors.message = "Message is required";
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
     const lines = [
       "Hello Bakehouse Café!",
       form.subject ? `Subject: ${form.subject}` : null,
@@ -95,37 +108,44 @@ export default function ContactPage() {
                   id="name"
                   name="name"
                   value={form.name}
-                  onChange={handleChange}
-                  placeholder="Jane Doe"
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="98765 43210"
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email (optional)</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="you@example.com"
-                  className="rounded-full bg-amber-50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
-                <Input
-                  id="subject"
+                onChange={handleChange}
+                placeholder="Jane Doe"
+                className="rounded-full bg-amber-50"
+              />
+              {errors.name ? <p className="text-xs font-medium text-red-600">{errors.name}</p> : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone</Label>
+              <Input
+                id="phone"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="98765 43210"
+                className="rounded-full bg-amber-50"
+              />
+              {errors.phone ? (
+                <p className="text-xs font-medium text-red-600">{errors.phone}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email (optional)</Label>
+              <Input
+                id="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+                className="rounded-full bg-amber-50"
+              />
+              {errors.email ? (
+                <p className="text-xs font-medium text-red-600">{errors.email}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="subject">Subject</Label>
+              <Input
+                id="subject"
                   name="subject"
                   value={form.subject}
                   onChange={handleChange}
@@ -139,20 +159,23 @@ export default function ContactPage() {
                   id="message"
                   name="message"
                   value={form.message}
-                  onChange={handleChange}
-                  placeholder="Share your query or event details..."
-                  className="h-32 w-full rounded-2xl border border-brown/15 bg-amber-50 p-3 text-sm text-brown outline-none focus:border-brown focus:shadow-soft"
-                />
-              </div>
-              <div className="sm:col-span-2">
-                <Button
-                  type="submit"
-                  className="w-full rounded-full bg-orange text-brown shadow-chip hover:bg-orange/90"
-                  disabled={!form.name || !form.phone || !form.message}
-                >
-                  Send on WhatsApp
-                </Button>
-              </div>
+                onChange={handleChange}
+                placeholder="Share your query or event details..."
+                className="h-32 w-full rounded-2xl border border-brown/15 bg-amber-50 p-3 text-sm text-brown outline-none focus:border-brown focus:shadow-soft"
+              />
+              {errors.message ? (
+                <p className="text-xs font-medium text-red-600">{errors.message}</p>
+              ) : null}
+            </div>
+            <div className="sm:col-span-2">
+              <Button
+                type="submit"
+                className="w-full rounded-full bg-orange text-brown shadow-chip hover:bg-orange/90"
+                disabled={!form.name || !form.phone || !form.message}
+              >
+                Send on WhatsApp
+              </Button>
+            </div>
             </form>
           </div>
         </SectionWrapper>
