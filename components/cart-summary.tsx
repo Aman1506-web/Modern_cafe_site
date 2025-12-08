@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/lib/cart-store";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -14,6 +14,9 @@ const OWNER_NUMBER = "919654248879"; // replace with real owner number when read
 export function CartSummary({ className }: { className?: string }) {
   const items = useCartStore((s) => s.items);
   const clearCart = useCartStore((s) => s.clearCart);
+  const increaseQty = useCartStore((s) => s.increaseQty);
+  const decreaseQty = useCartStore((s) => s.decreaseQty);
+  const removeItem = useCartStore((s) => s.removeItem);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -51,36 +54,86 @@ export function CartSummary({ className }: { className?: string }) {
 
   return (
     <>
-      <div
-        className={cn(
-          "flex items-center justify-between rounded-full bg-brown px-4 py-3 text-amber-100 shadow-soft",
-          className
-        )}
-      >
-        <div className="flex items-center gap-2 text-sm font-semibold">
-          <ShoppingBag className="size-4" />
-          <span>
-            {count} item{count === 1 ? "" : "s"} • ₹{total}
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="secondary"
-            className="rounded-full bg-yellow text-brown hover:bg-yellow/90"
-            onClick={() => setOpen(true)}
-            disabled={items.length === 0}
-          >
-            Send Order on WhatsApp
-          </Button>
-          {items.length > 0 ? (
-            <button
-              className="rounded-full px-3 py-1 text-xs text-amber-100/80 hover:text-white"
-              onClick={clearCart}
+      <div className={cn("space-y-3", className)}>
+        <div className="flex flex-col gap-3 rounded-2xl bg-brown px-4 py-3 text-amber-100 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:rounded-full">
+          <div className="flex items-center gap-2 text-sm font-semibold">
+            <ShoppingBag className="size-4" />
+            <span>
+              {count} item{count === 1 ? "" : "s"} • ₹{total}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="secondary"
+              className="rounded-full bg-yellow text-brown hover:bg-yellow/90"
+              onClick={() => setOpen(true)}
+              disabled={items.length === 0}
             >
-              Clear
-            </button>
-          ) : null}
+              Send Order on WhatsApp
+            </Button>
+            {items.length > 0 ? (
+              <button
+                className="rounded-full px-3 py-1 text-xs text-amber-100/80 hover:text-white"
+                onClick={clearCart}
+              >
+                Clear
+              </button>
+            ) : null}
+          </div>
         </div>
+
+        {items.length > 0 ? (
+          <div className="space-y-3 rounded-2xl bg-white p-3 shadow-soft">
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className="flex flex-col gap-3 rounded-xl bg-amber-50 px-3 py-2 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div className="w-full">
+                  <p className="font-semibold text-brown">{item.name}</p>
+                  <p className="text-xs text-brown/60">
+                    ₹{item.price} • {item.category}
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center sm:gap-3">
+                  <div className="flex items-center gap-2 rounded-full bg-white px-2 py-1 shadow-chip sm:ml-auto">
+                    <button
+                      className="grid h-7 w-7 place-items-center rounded-full bg-brown text-amber-100"
+                      onClick={() => decreaseQty(item.id)}
+                      aria-label="Decrease quantity"
+                    >
+                      -
+                    </button>
+                    <span className="min-w-[20px] text-center text-sm font-semibold text-brown">
+                      {item.quantity}
+                    </span>
+                    <button
+                      className="grid h-7 w-7 place-items-center rounded-full bg-brown text-amber-100"
+                      onClick={() => increaseQty(item.id)}
+                      aria-label="Increase quantity"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="text-sm font-semibold text-brown">
+                    ₹{item.price * item.quantity}
+                  </div>
+                  <button
+                    className="text-brown/50 hover:text-brown"
+                    aria-label="Remove item"
+                    onClick={() => removeItem(item.id)}
+                  >
+                    <X className="size-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+            <div className="flex items-center justify-between rounded-xl bg-amber-100 px-3 py-2 font-semibold text-brown">
+              <span>Total</span>
+              <span>₹{total}</span>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>

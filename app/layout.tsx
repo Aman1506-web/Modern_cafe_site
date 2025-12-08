@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Baloo_2, Inter } from "next/font/google";
 import "./globals.css";
+import { CartBottomBar } from "@/components/cart-bottom-bar";
 
 const baloo = Baloo_2({
   variable: "--font-display",
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${baloo.variable} ${inter.variable} bg-cream text-brown antialiased`}
       >
         {children}
+        <CartBottomBar />
       </body>
     </html>
   );
