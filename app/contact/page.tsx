@@ -5,10 +5,43 @@ import { Footer } from "@/components/footer";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
+const OWNER_NUMBER = "919654248879"; // replace with your real WhatsApp number
+
 export default function ContactPage() {
-  const [message, setMessage] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSend = () => {
+    if (!form.name || !form.phone || !form.message) return;
+    const lines = [
+      "Hello Bakehouse Café!",
+      form.subject ? `Subject: ${form.subject}` : null,
+      `Name: ${form.name}`,
+      `Phone: ${form.phone}`,
+      form.email ? `Email: ${form.email}` : null,
+      "",
+      "Message:",
+      form.message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const url = `https://wa.me/${OWNER_NUMBER}?text=${encodeURIComponent(lines)}`;
+    window.open(url, "_blank");
+  };
 
   return (
     <div className="min-h-screen bg-cream">
@@ -49,19 +82,78 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-6 space-y-3">
-              <Label htmlFor="msg">Message</Label>
-              <textarea
-                id="msg"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Share your query or event details..."
-                className="h-32 w-full rounded-2xl border border-brown/15 bg-amber-50 p-3 text-sm text-brown outline-none focus:border-brown focus:shadow-soft"
-              />
-              <Button className="rounded-full bg-orange text-brown shadow-chip hover:bg-orange/90">
-                Send message
-              </Button>
-            </div>
+            <form
+              className="mt-6 grid gap-4 sm:grid-cols-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSend();
+              }}
+            >
+              <div className="space-y-2">
+                <Label htmlFor="name">Full name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder="Jane Doe"
+                  className="rounded-full bg-amber-50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="98765 43210"
+                  className="rounded-full bg-amber-50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email (optional)</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="you@example.com"
+                  className="rounded-full bg-amber-50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="subject">Subject</Label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  placeholder="Catering, event booking, feedback..."
+                  className="rounded-full bg-amber-50"
+                />
+              </div>
+              <div className="sm:col-span-2 space-y-2">
+                <Label htmlFor="message">Message</Label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder="Share your query or event details..."
+                  className="h-32 w-full rounded-2xl border border-brown/15 bg-amber-50 p-3 text-sm text-brown outline-none focus:border-brown focus:shadow-soft"
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <Button
+                  type="submit"
+                  className="w-full rounded-full bg-orange text-brown shadow-chip hover:bg-orange/90"
+                  disabled={!form.name || !form.phone || !form.message}
+                >
+                  Send on WhatsApp
+                </Button>
+              </div>
+            </form>
           </div>
         </SectionWrapper>
       </main>
