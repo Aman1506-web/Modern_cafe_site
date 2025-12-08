@@ -166,8 +166,8 @@ export function StaffSection() {
             butter, organic flour, and single-origin beans.
           </p>
           <p className="rounded-2xl bg-white/10 p-4 text-sm italic text-amber-100">
-            “Baking is a craft in itself, and we love these delicate flavors.”
-            — Ashton Cooper, Head Baker
+            “Baking is a craft in itself, and we love these delicate flavors.” —
+            Ashton Cooper, Head Baker
           </p>
           <Button className="w-fit rounded-full bg-yellow text-brown shadow-chip hover:bg-yellow/90">
             Meet the team
@@ -237,7 +237,9 @@ export function ReviewsSection() {
           </div>
           <div className="rounded-full bg-white px-4 py-2 text-brown shadow-chip">
             <span className="display text-xl font-extrabold">4.7</span>
-            <span className="ml-2 text-sm text-brown/70">Based on 350+ reviews</span>
+            <span className="ml-2 text-sm text-brown/70">
+              Based on 350+ reviews
+            </span>
           </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -269,22 +271,74 @@ export function VisitSection() {
           <p className="text-brown/70">Open daily: 8:00 AM – 11:00 PM</p>
           <p className="text-brown/70">Phone: +91 88888 88888</p>
           <div className="flex gap-2">
-            {["Instagram", "Facebook", "YouTube"].map((social) => (
+            {socialLinks.map((social) => (
               <span
-                key={social}
-                className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-brown shadow-chip"
+                key={social.name}
+                aria-label={social.name}
+                className="flex items-center justify-center rounded-full bg-amber-100 p-2 text-brown shadow-chip"
               >
-                {social}
+                <SocialIcon name={social.icon} />
               </span>
             ))}
           </div>
         </div>
         <div className="h-52 rounded-2xl bg-amber-100/70 p-3 shadow-inner">
-          <div className="flex h-full w-full items-center justify-center rounded-xl border-2 border-dashed border-brown/20 text-brown/60">
-            Map placeholder
-          </div>
+          <iframe
+            title="BakeHouse Café location"
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3499.6013313506764!2d77.30448207572228!3d28.7015699756272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDQyJzA1LjciTiA3N8KwMTgnMjUuNCJF!5e0!3m2!1sen!2sin!4v1765171027755!5m2!1sen!2sin"
+            className="h-full w-full rounded-xl border-0"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
       </div>
     </SectionWrapper>
   );
 }
+
+function SocialIcon({ name }: { name: "instagram" | "facebook" | "youtube" }) {
+  if (name === "instagram") {
+    return (
+      <svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="currentColor"
+      >
+        <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm0 2a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 3.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5Zm0 2a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 12 10.5Zm4.25-4.75a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z" />
+      </svg>
+    );
+  }
+  if (name === "facebook") {
+    return (
+      <svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="currentColor"
+      >
+        <path d="M13 10.5V8.75c0-.833.334-1.25 1.25-1.25H15.5V5h-2.5C10.75 5 9.5 6.25 9.5 8.25v2.25H7v2.5h2.5V19h3V13h2.086L15 10.5h-2Z" />
+      </svg>
+    );
+  }
+  return (
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="currentColor"
+    >
+      <path d="M21.8 7.2c-.2-.7-.7-1.3-1.4-1.5C19 5.3 12 5.3 12 5.3s-7 0-8.4.4c-.7.2-1.2.8-1.4 1.5-.4 1.5-.4 4.7-.4 4.7s0 3.2.4 4.7c.2.7.7 1.2 1.4 1.4C5 18.7 12 18.7 12 18.7s7 0 8.4-.4c.7-.2 1.2-.7 1.4-1.4.4-1.5.4-4.7.4-4.7s0-3.2-.4-4.7ZM10 15V9l5.2 3L10 15Z" />
+    </svg>
+  );
+}
+
+const socialLinks: { name: string; icon: "instagram" | "facebook" | "youtube" }[] = [
+  { name: "Instagram", icon: "instagram" },
+  { name: "Facebook", icon: "facebook" },
+  { name: "YouTube", icon: "youtube" },
+];
