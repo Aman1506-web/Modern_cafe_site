@@ -14,6 +14,7 @@ import {
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { LoaderOverlay } from "@/components/loader-overlay";
+import { TopBanner } from "@/components/top-banner";
 
 export default function Home() {
   const [showLoader, setShowLoader] = useState(true);
@@ -26,6 +27,7 @@ export default function Home() {
   return (
     <div className="bg-cream">
       {showLoader ? <LoaderOverlay /> : null}
+      <TopBanner />
       <Navbar />
       <main className="pb-12">
         <HeroCarousel />

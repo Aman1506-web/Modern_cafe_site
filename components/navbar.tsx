@@ -77,19 +77,22 @@ export function Navbar() {
             BHC
           </div>
           <div className="leading-tight">
-            <p className="display text-lg font-bold text-brown">Bakehouse Café</p>
-            <p className="text-xs text-brown/70">Fresh bakes, coffee & bites</p>
+            <p className="display text-xl font-extrabold uppercase text-brown tracking-tight">
+              Bakehouse Café
+            </p>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-5 rounded-full bg-white px-4 py-2 text-sm font-medium text-brown shadow-chip md:flex">
+        <nav className="hidden items-center gap-2 text-sm font-bold uppercase text-brown md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "rounded-full px-3 py-2 transition-colors",
-                pathname === link.href ? "bg-amber-100 text-brown" : "hover:bg-amber-50"
+                "rounded-full px-3 py-2 transition",
+                pathname === link.href
+                  ? "bg-amber-100 text-brown shadow-chip"
+                  : "hover:bg-amber-50 hover:text-brown"
               )}
             >
               {link.label}
@@ -103,10 +106,13 @@ export function Navbar() {
           </div>
           <Button
             size="sm"
-            className="rounded-full bg-orange text-brown hover:bg-orange/90"
+            className="relative overflow-hidden rounded-full border border-brown/70 bg-yellow px-4 py-2 text-brown shadow-soft transition hover:-translate-y-0.5 hover:shadow-lg sm:px-5 sm:py-3"
             onClick={() => router.push("/menu")}
           >
-            Order Now
+            <span className="display text-sm font-extrabold uppercase tracking-wide">
+              Order Now
+            </span>
+            <span className="pointer-events-none absolute inset-0 rounded-full border border-brown/70 opacity-80" />
           </Button>
         </div>
       </div>
