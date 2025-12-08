@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ShoppingBag, X, Minus, Plus, MessageCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,7 @@ export function CartDrawer({ triggerContent, triggerClassName }: CartDrawerProps
   const increaseQty = useCartStore((s) => s.increaseQty);
   const decreaseQty = useCartStore((s) => s.decreaseQty);
   const removeItem = useCartStore((s) => s.removeItem);
+  const hydrate = useCartStore.persist?.rehydrate;
   const [open, setOpen] = useState(false);
   const [whOpen, setWhOpen] = useState(false);
   const [name, setName] = useState("");
@@ -57,7 +58,13 @@ export function CartDrawer({ triggerContent, triggerClassName }: CartDrawerProps
     const url = `https://wa.me/${OWNER_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
     setWhOpen(false);
+    clearCart();
   };
+
+  // ensure persisted store is hydrated when component mounts (for SSR)
+  useEffect(() => {
+    hydrate?.();
+  }, [hydrate]);
 
   return (
     <>
