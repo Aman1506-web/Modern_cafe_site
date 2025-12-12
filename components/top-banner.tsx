@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
+// top banner text
 const messages = [
   "10% off on orders above ₹200",
   "Fresh bakes daily • Cozy vibes",
