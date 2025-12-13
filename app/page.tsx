@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { HeroCarousel } from "@/components/hero-carousel";
+import HeroCarousel from "@/components/hero-carousel";
 import {
   CravingPills,
   FeaturedBakes,
