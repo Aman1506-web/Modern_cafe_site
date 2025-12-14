@@ -5,45 +5,45 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { cn } from "@/lib/utils";
 
-export function ReservePromo() {
-  return (
-    <SectionWrapper className="mt-6">
-      <div className="grid gap-6 overflow-hidden rounded-[28px] bg-brown text-amber-50 shadow-soft md:grid-cols-[1fr_1.1fr]">
-        <div className="relative min-h-[240px]">
-          <Image
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80&auto=format&fit=crop"
-            alt="Restaurant interior"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-brown/70 to-transparent" />
-        </div>
-        <div className="flex flex-col justify-center gap-4 p-6 sm:p-10">
-          <p className="display text-sm uppercase tracking-wide text-yellow">
-            Reserve a table
-          </p>
-          <h2 className="display text-3xl font-extrabold leading-tight">
-            Bring friends for coffee dates & cozy dinners.
-          </h2>
-          <p className="max-w-2xl text-base text-amber-100/80">
-            Lock your slot, share your cravings, and we’ll keep your favorite
-            bakes warm when you walk in.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/reserve">
-              <Button className="rounded-full bg-yellow text-brown shadow-chip hover:bg-yellow/90">
-                Reserve Table
-              </Button>
-            </Link>
-            <Badge className="rounded-full bg-amber-100/20 text-amber-50">
-              Instant WhatsApp confirmation
-            </Badge>
-          </div>
-        </div>
-      </div>
-    </SectionWrapper>
-  );
-}
+// export function ReservePromo() {
+//   return (
+//     <SectionWrapper className="mt-6">
+//       <div className="grid gap-6 overflow-hidden rounded-[28px] bg-brown text-amber-50 shadow-soft md:grid-cols-[1fr_1.1fr]">
+//         <div className="relative min-h-[240px]">
+//           <Image
+//             src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80&auto=format&fit=crop"
+//             alt="Restaurant interior"
+//             fill
+//             className="object-cover"
+//           />
+//           <div className="absolute inset-0 bg-gradient-to-r from-brown/70 to-transparent" />
+//         </div>
+//         <div className="flex flex-col justify-center gap-4 p-6 sm:p-10">
+//           <p className="display text-sm uppercase tracking-wide text-yellow">
+//             Reserve a table
+//           </p>
+//           <h2 className="display text-3xl font-extrabold leading-tight">
+//             Bring friends for coffee dates & cozy dinners.
+//           </h2>
+//           <p className="max-w-2xl text-base text-amber-100/80">
+//             Lock your slot, share your cravings, and we’ll keep your favorite
+//             bakes warm when you walk in.
+//           </p>
+//           <div className="flex flex-wrap gap-3">
+//             <Link href="/reserve">
+//               <Button className="rounded-full bg-yellow text-brown shadow-chip hover:bg-yellow/90">
+//                 Reserve Table
+//               </Button>
+//             </Link>
+//             <Badge className="rounded-full bg-amber-100/20 text-amber-50">
+//               Instant WhatsApp confirmation
+//             </Badge>
+//           </div>
+//         </div>
+//       </div>
+//     </SectionWrapper>
+//   );
+// }
 
 const featured = [
   {
