@@ -16,6 +16,7 @@ export default function HeroCarousel() {
         items-center
         gap-1 sm:gap-6 lg:gap-10
         px-4 sm:px-6 lg:px-12
+        pt-8 sm:pt-12 lg:pt-0
         lg:grid-cols-2
         min-h-[85vh]
       "
