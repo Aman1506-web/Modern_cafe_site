@@ -47,7 +47,7 @@ export default function HeroCarousel() {
         <div className="mt-3 sm:mt-5 flex flex-col items-center sm:flex-row sm:items-start gap-4">
           <Button
             className="relative overflow-hidden rounded-full border border-brown/70 bg-yellow px-5 py-2 text-brown shadow-soft transition hover:-translate-y-0.5 hover:shadow-lg sm:px-6 sm:py-3.5"
-            onClick={() => router.push("/menu")}
+            onClick={() => router.push("/menu?category=burger")}
           >
             <span className="display text-lg sm:text-xl font-extrabold uppercase tracking-wide">
               Order Now
@@ -56,7 +56,7 @@ export default function HeroCarousel() {
             <span className="pointer-events-none absolute inset-0 rounded-full border border-brown/70 opacity-80" />
           </Button>
 
-          <Button className="flex items-center gap-1 py-1 sm:py-2 text-lg sm:text-xl text-gray-700 display font-semibold bg-transparent">
+          <Button className="flex items-center gap-1 py-1 sm:py-2 text-lg sm:text-xl text-gray-700 display font-semibold bg-transparent" onClick={() => router.push("/menu")}>
             Learn More
             <ChevronRight />
           </Button>
