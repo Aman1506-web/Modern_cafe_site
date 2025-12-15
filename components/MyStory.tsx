@@ -11,14 +11,14 @@ export default function MyStory() {
       className="
       relative 
     px-4 sm:px-6 lg:px-12
-    pt-20        /* mobile top gap from hero */
+    pt-8       /* mobile top gap from hero */
     pb-12
-    lg:pt-28     /* desktop spacing */
+    lg:pt-20     /* desktop spacing */
     lg:pb-20
   "
     >
       {/* subtle separator from hero */}
-  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-brown/10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-brown/10" />
 
       {/* Text and underline div */}
       <div className="lg:mb-14 mb-11 text-center">
@@ -68,9 +68,8 @@ export default function MyStory() {
           </p>
 
           <h3 className="display text-4xl font-bold leading-tight">
-            A place built on warmth,
-            <br />
-            coffee & conversations.
+            A place built on warmth, coffee
+            <br />& conversations.
           </h3>
 
           <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
@@ -79,7 +78,7 @@ export default function MyStory() {
             We believe great food tastes even better when enjoyed together.
           </p>
           <div className="mt-4 flex items-center gap-6">
-            <Button className="rounded-full lg:text-xl text-lg bg-yellow px-6 py-3 text-brown font-bold hover:shadow-lg cursor-pointer">
+            <Button className="rounded-full lg:text-xl text-lg bg-yellow px-6 py-3 text-brown font-bold hover:shadow-lg cursor-pointer border-2 border-brown/70">
               <Link href={"/reserve"}> Reserve Table</Link>
             </Button>
 

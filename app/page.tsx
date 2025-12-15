@@ -16,6 +16,7 @@ import { Footer } from "@/components/footer";
 import { LoaderOverlay } from "@/components/loader-overlay";
 import { TopBanner } from "@/components/top-banner";
 import MyStory from "@/components/MyStory";
+import ProductsDaily from "@/components/ProductsDaily";
 
 export default function Home() {
   const [showLoader, setShowLoader] = useState(true);
@@ -32,6 +33,7 @@ export default function Home() {
       <Navbar />
       <main className="pb-12">
         <HeroCarousel />
+        <ProductsDaily/>
         {/* <ReservePromo /> */}
         <MyStory />
         <FeaturedBakes />
