@@ -95,4 +95,3 @@ export default function HeroCarousel() {
 
 
 // object-[10%_100%]
-
