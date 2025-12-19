@@ -4,10 +4,8 @@ import { useEffect, useState } from "react";
 import HeroCarousel from "@/components/hero-carousel";
 import {
   CravingPills,
-  FeaturedBakes,
   // ReservePromo,
   ReviewsSection,
-  StaffSection,
   VisitSection,
   WhyChooseUs,
 } from "@/components/home-sections";
@@ -19,6 +17,7 @@ import MyStory from "@/components/MyStory";
 import ProductsDaily from "@/components/ProductsDaily";
 import LogoBanner from "@/components/LogoBanner";
 import CafeGallery from "@/components/CafeGallery";
+import ChefSection from "@/components/ChefSection";
 
 export default function Home() {
   const [showLoader, setShowLoader] = useState(true);
@@ -41,8 +40,9 @@ export default function Home() {
        {/* <ReservePromo /> */}
         <MyStory />
         <CafeGallery/>
+        <ChefSection/>
         <CravingPills />
-        <StaffSection />
+        {/* <StaffSection /> */}
         <WhyChooseUs />
         <ReviewsSection />
         <VisitSection />

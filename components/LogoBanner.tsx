@@ -51,7 +51,7 @@ export default function LogoBanner() {
                   href={logo.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-shrink-0 transition-all duration-100 hover:scale-110 hover:-translate-y-2"
+                  className="flex-shrink-0 transition-all duration-500 hover:scale-110 hover:-translate-y-2"
                 >
                   <div className="bg-white rounded-2xl px-8 lg:px-12 py-4 lg:py-5 shadow-lg hover:shadow-2xl border-2 border-brown/20">
                     <span className="text-2xl lg:text-3xl font-bold text-brown whitespace-nowrap">
