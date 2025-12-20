@@ -92,7 +92,48 @@ export default function ProductsDaily() {
   };
 
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-16 lg:py-14">
+    <section className=" relative px-4 sm:px-6 lg:px-12 py-16 lg:py-14">
+      {/* ================= Coffee Beans Decoration (Left) ================= */}
+      <div
+        className="
+      pointer-events-none
+      select-none
+      absolute
+      z-0
+
+      /* ---------- Mobile ---------- */
+      left-[-60px]
+      top-[-2%]
+      w-[300px]
+      h-[300px]
+      opacity-[0.12]
+      rotate-[-1deg]
+
+      /* ---------- Tablet ---------- */
+      sm:left-[-60px]
+      sm:top-[12%]
+      sm:w-[240px]
+      sm:h-[240px]
+      sm:opacity-[0.15]
+
+      /* ---------- Desktop ---------- */
+      lg:left-[-100px]
+      lg:top-[0%]
+      lg:w-[820px]
+      lg:h-[820px]
+      lg:opacity-[0.20]
+      lg:rotate-[10deg]
+    "
+      >
+        <Image
+          src="/decor/coffee-beans.png"
+          alt=""
+          fill
+          className="object-contain"
+          priority={false}
+        />
+      </div>
+
       {/* ===============================
           HEADING + CATEGORIES ROW
       =============================== */}
@@ -175,6 +216,7 @@ export default function ProductsDaily() {
           <Card
             key={p.id}
             className="
+            relative
     rounded-3xl
     border-2
     bg-white

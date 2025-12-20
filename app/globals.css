@@ -246,3 +246,58 @@ body {
 .group:hover .hero-shine-effect {
   transform: translateX(100%);
 }
+
+
+/* Animation for POPUP OFFERS  */
+@layer utilities {
+  /* Fade in animation */
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .zoom-in-95 {
+    animation: zoomIn 0.4s ease-out;
+  }
+  
+  .duration-300 {
+    animation-duration: 300ms;
+  }
+  
+  .duration-400 {
+    animation-duration: 400ms;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* For hero section */
+body {
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
