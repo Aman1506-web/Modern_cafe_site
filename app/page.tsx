@@ -18,6 +18,7 @@ import ProductsDaily from "@/components/ProductsDaily";
 import LogoBanner from "@/components/LogoBanner";
 import CafeGallery from "@/components/CafeGallery";
 import ChefSection from "@/components/ChefSection";
+import { InstaBanner } from "@/components/insta-banner";
 
 export default function Home() {
   const [showLoader, setShowLoader] = useState(true);
@@ -41,6 +42,7 @@ export default function Home() {
         <MyStory />
         <CafeGallery/>
         <ChefSection/>
+        <InstaBanner />
         <CravingPills />
         {/* <StaffSection /> */}
         <WhyChooseUs />
