@@ -3,11 +3,8 @@
 import { useEffect, useState } from "react";
 import HeroCarousel from "@/components/hero-carousel";
 import {
-  CravingPills,
   // ReservePromo,
-  ReviewsSection,
   VisitSection,
-  WhyChooseUs,
 } from "@/components/home-sections";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -19,6 +16,8 @@ import LogoBanner from "@/components/LogoBanner";
 import CafeGallery from "@/components/CafeGallery";
 import ChefSection from "@/components/ChefSection";
 import { InstaBanner } from "@/components/insta-banner";
+import InstagramWidget from "@/components/InstagramWidget";
+import GoogleReviews from "@/components/GoogleReviews";
 
 export default function Home() {
   const [showLoader, setShowLoader] = useState(true);
@@ -33,23 +32,24 @@ export default function Home() {
       {showLoader ? <LoaderOverlay /> : null}
       <TopBanner />
       <Navbar />
-      <main className="pb-12">
+      <main className="pb-0">
         <HeroCarousel />
-        <ProductsDaily/>
+        <ProductsDaily />
         {/* Moving banner for companies */}
         <LogoBanner />
-       {/* <ReservePromo /> */}
+        {/* <ReservePromo /> */}
         <MyStory />
-        <CafeGallery/>
-        <ChefSection/>
-        <InstaBanner />
-        <CravingPills />
-        {/* <StaffSection /> */}
-        <WhyChooseUs />
-        <ReviewsSection />
-        <VisitSection />
+        <CafeGallery />
+        <ChefSection />
+        <div className="bg-white">
+          <InstaBanner />
+          <InstagramWidget />
+          {/* <StaffSection /> */}
+          <GoogleReviews />
+          <VisitSection />
+          <Footer />
+        </div>
       </main>
-      <Footer />
     </div>
   );
 }
