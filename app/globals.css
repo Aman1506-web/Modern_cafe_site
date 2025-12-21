@@ -53,7 +53,14 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee 18s linear infinite;
+  animation: marquee 16s linear infinite;
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .animate-marquee {
+    animation-duration: 12s;
+  }
 }
 
 .bg-cream {
@@ -300,4 +307,79 @@ body {
 
 html {
   overflow-x: hidden;
+}
+
+
+/* Responsive marquee animations */
+/* Remove old marquee-fast */
+
+/* New seamless marquee */
+@keyframes marquee-seamless {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee-seamless {
+  animation: marquee-seamless 25s linear infinite;
+  will-change: transform;
+}
+
+/* Mobile faster */
+@media (max-width: 640px) {
+  .marquee-seamless {
+    animation-duration: 29s;
+  }
+}
+
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .marquee-seamless {
+    animation-duration: 20s;
+  }
+}
+
+/* Desktop slower */
+@media (min-width: 1025px) {
+  .marquee-seamless {
+    animation-duration: 30s;
+  }
+}
+
+/* =================================== */
+
+
+/* Logo scroll animation - Seamless loop */
+@keyframes logo-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.logo-scroll {
+  animation: logo-scroll 25s linear infinite;
+  will-change: transform;
+}
+
+/* Mobile - Faster */
+@media (max-width: 640px) {
+  .logo-scroll {
+    animation-duration: 18s;
+  }
+}
+
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .logo-scroll {
+    animation-duration: 22s;
+  }
+}
+
+/* Desktop - Slower */
+@media (min-width: 1025px) {
+  .logo-scroll {
+    animation-duration: 30s;
+  }
 }

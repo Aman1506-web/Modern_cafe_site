@@ -9,59 +9,78 @@ export default function MyStory() {
   return (
     <section
       className="
-      relative 
-    px-4 sm:px-6 lg:px-12
-    pt-8       /* mobile top gap from hero */
-    pb-12
-    lg:pt-20     /* desktop spacing */
-    lg:pb-20
-  "
+        relative 
+        px-4 sm:px-6 lg:px-12
+        pt-8 pb-12
+        lg:pt-20 lg:pb-20
+        overflow-hidden  /* ← Prevent sketch from bleeding outside */
+      "
     >
-      {/* subtle separator from hero */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-brown/10" />
+      {/* ========== CAFÉ SKETCH - STORYTELLING BACKGROUND ========== */}
+      <div
+        className="
+          absolute
+          pointer-events-none
+          select-none
+          
+          /* MOBILE: hidden */
+          
+          /* DESKTOP: Right side ambient element */
+          lg:block
+          lg:right-[-120px]    /* Partially cropped */
+          lg:top-[2%]          /* Vertically centered with content */
+          lg:w-[680px]
+          lg:h-[680px]
+          lg:opacity-[0.08]     /* Very subtle */
+          lg:z-0                /* Behind everything */
+        "
+      >
+        <Image
+          src="/decor/cafe-sketch-story.png"  /* Save as separate file */
+          alt=""
+          fill
+          className="object-contain"
+          priority={false}
+        />
+      </div>
 
-      {/* Text and underline div */}
-      <div className="lg:mb-14 mb-11 text-center">
+      {/* ========== HEADING (z-10) ========== */}
+      <div className="relative z-10 lg:mb-14 mb-11 text-center">
         <h2 className="display text-4xl sm:text-5xl lg:text-6xl font-bold">
           Our <span className="text-yellow-500">Story</span>
         </h2>
-
-        {/* underline */}
         <div className="mx-auto mt-4 h-1 w-24 rounded-full bg-yellow-400" />
       </div>
 
-      {/* Image and story text and button div */}
+      {/* ========== CONTENT GRID (z-10) ========== */}
       <div
         className="
-  grid
-  grid-cols-1
-  lg:grid-cols-2
-  gap-8        /* mobile tighter */
-  lg:gap-16    /* desktop same */
-  items-center
-"
+          relative z-10
+          grid grid-cols-1 lg:grid-cols-2
+          gap-8 lg:gap-16
+          items-center
+        "
       >
-        {/* Image div */}
+        {/* IMAGE */}
         <div
           className="
-  relative
-  w-full
-  h-[240px]        /* mobile = horizontal */
-  sm:h-[320px]
-  lg:h-[420px]     /* desktop unchanged */
-  rounded-3xl
-  overflow-hidden
-"
+            relative
+            w-full
+            h-[240px] sm:h-[320px] lg:h-[420px]
+            rounded-3xl
+            overflow-hidden
+            shadow-xl  /* Add depth */
+          "
         >
           <Image
-            src="/images/cafe.jpg" // change to your actual image
+            src="/images/cafe.jpg"
             alt="Bakehouse Cafe"
             fill
             className="object-cover object-center sm:object-[50%_40%]"
           />
         </div>
 
-        {/* Text and buttons div */}
+        {/* TEXT & BUTTONS */}
         <div className="flex flex-col gap-6">
           <p className="text-sm uppercase tracking-widest text-yellow-600 font-semibold">
             Our Journey
@@ -77,9 +96,10 @@ export default function MyStory() {
             friends meet, stories are shared, and every cup is brewed with care.
             We believe great food tastes even better when enjoyed together.
           </p>
+
           <div className="mt-4 flex items-center gap-6">
             <Button className="rounded-full lg:text-xl text-lg bg-yellow px-6 py-3 text-brown font-bold hover:shadow-lg cursor-pointer border-2 border-brown/70">
-              <Link href={"/reserve"}> Reserve Table</Link>
+              <Link href={"/reserve"}>Reserve Table</Link>
             </Button>
 
             <Link
@@ -87,7 +107,7 @@ export default function MyStory() {
               className="flex items-center gap-1 text-lg lg:text-xl font-bold text-brown hover:underline underline-offset-4"
             >
               <span className="leading-none">Read More</span>
-              <ChevronRight className="h-4 w-4 " />
+              <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
