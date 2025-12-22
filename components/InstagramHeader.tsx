@@ -6,7 +6,33 @@ export default function InstagramHeader() {
   const p = instagramProfile;
 
   return (
-    <div className="p-6 text-center md:bg-white md:rounded-2xl md:shadow-lg">
+    <div className="relative overflow-visible p-5 text-center mt-0  md:bg-white md:rounded-2xl md:shadow-lg">
+{/* FOLLOW STICKER — top-left, tilted (mobile + desktop only) */}
+<div
+  className="
+    absolute
+    top-[-20px]
+    left-[-40px]
+
+    block md:hidden lg:block
+    pointer-events-none
+    z-20
+    
+  "
+>
+  <img
+    src="/decor/follow-moments.png"
+    alt="Follow our daily moments"
+    className="
+      w-[200px] lg:w-[320px]
+      -rotate-20
+      drop-shadow-md
+    "
+  />
+</div>
+
+
+      
       {/* Instagram ring and photo */}
       <InstagramAvatar />
 

@@ -3,10 +3,10 @@ import InstagramGrid from "./InstagramGrid";
 
 export default function InstagramWidget() {
   return (
-    <section className="py-10 lg:py-20 bg-white">
+    <section className="py-0 lg:py-20 bg-white relative overflow-visible">
       <div className="max-w-7xl mx-auto px-4">
         {/* MOBILE: Stacked layout */}
-        <div className="md:hidden max-w-[420px] mx-auto shadow-xl overflow-hidden rounded-3xl">
+        <div className="md:hidden max-w-[420px] mx-auto shadow-xl overflow-x-visible rounded-3xl">
           <InstagramHeader />
           <InstagramGrid />
         </div>
