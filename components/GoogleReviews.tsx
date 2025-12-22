@@ -56,11 +56,11 @@ export default function GoogleReviews() {
 
 
   return (
-    <section className="py-12 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-15 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Heading */}
         <h2 className="text-center display text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-12 lg:mb-16">
-          What Our Customers Say
+          What Our <span className="text-yellow-400"> Customers</span> Say
         </h2>
 
         {/* Google Reviews Header */}

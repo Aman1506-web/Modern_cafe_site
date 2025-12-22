@@ -13,9 +13,36 @@ export default function MyStory() {
         px-4 sm:px-6 lg:px-12
         pt-8 pb-12
         lg:pt-20 lg:pb-20
-        overflow-hidden  /* ← Prevent sketch from bleeding outside */
+        overflow-visible  /* ← Prevent sketch from bleeding outside */
       "
     >
+      {/* ========== MOBILE CAFÉ SKETCH (LEFT TOP ONLY) ========== */}
+<div
+  className="
+    absolute
+    pointer-events-none
+    select-none
+
+    block lg:hidden          /* ONLY mobile */
+    left-[-12px]            /* Push left partially */
+    top-[-66px]              /* Slightly above */
+    w-[170px]
+    h-[170px]
+    opacity-[0.25]           /* Subtle but visible */
+    z-0
+    overflow-visible
+  "
+>
+  <Image
+    src="/decor/cafe-sketch-story1.png"
+    alt=""
+    fill
+    className="object-contain [mask-image:linear-gradient(to_left,transparent,black_12%)]
+    [-webkit-mask-image:linear-gradient(to_left,transparent,black_12%)]"
+    priority={false}
+  />
+</div>
+
       {/* ========== CAFÉ SKETCH - STORYTELLING BACKGROUND ========== */}
       <div
         className="
@@ -45,7 +72,7 @@ export default function MyStory() {
       </div>
 
       {/* ========== HEADING (z-10) ========== */}
-      <div className="relative z-10 lg:mb-14 mb-11 text-center">
+      <div className="relative z-10 lg:mb-14 mb-1 py-8 text-center">
         <h2 className="display text-4xl sm:text-5xl lg:text-6xl font-bold">
           Our <span className="text-yellow-500">Story</span>
         </h2>
@@ -112,6 +139,35 @@ export default function MyStory() {
           </div>
         </div>
       </div>
+
+      {/* ========== BOTTOM STRING LIGHTS (FLOW TO NEXT SECTION) ========== */}
+<div
+  className="
+    absolute
+    lg:hidden
+    left-1/2
+    -translate-x-1/2
+    bottom-[-70px]        /* 👈 pushes lights into next section */
+    h-[150px]
+    opacity-[0.5]
+    w-screen
+    pointer-events-none
+    select-none
+    z-10
+    overflow-visible
+  "
+>
+  <Image
+    src="/decor/string-lights.png"
+    alt=""
+    fill
+    className="
+      object-cover
+    "
+    priority={false}
+  />
+</div>
+
     </section>
   );
 }

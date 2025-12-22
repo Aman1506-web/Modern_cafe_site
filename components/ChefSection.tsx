@@ -84,13 +84,29 @@ export default function ChefSection() {
 
           {/* TEXT SIDE — EXACT MATCH WITH OUR STORY */}
           <div className="order-1 lg:order-2 flex flex-col gap-6">
-            <p className="text-sm uppercase tracking-widest text-yellow-600 font-semibold">
-              Our Chef
-            </p>
+            <div className="flex items-start gap-4 lg:block overflow-visible">
+  {/* LEFT: TEXT */}
+  <div className="flex-1">
+    <p className="text-sm uppercase tracking-widest text-yellow-600 font-semibold">
+      Our Chef
+    </p>
 
-            <h3 className="display text-4xl font-bold leading-tight text-gray-900">
-              Chef Michael Anderson
-            </h3>
+    <h3 className="display text-4xl font-bold leading-tight text-gray-900">
+      Chef Michael Anderson
+    </h3>
+  </div>
+
+  {/* RIGHT: CHEF SKETCH (MOBILE ONLY) */}
+  <div className="relative block lg:hidden w-[120px] h-[130px] opacity-[0.8]">
+    <Image
+      src="/decor/chef-sketch.png"
+      alt=""
+      fill
+      className="object-contain"
+    />
+  </div>
+</div>
+
 
             <p className="text-yellow-600 font-semibold text-lg">
               Head Chef & Culinary Director
