@@ -383,3 +383,24 @@ html {
     animation-duration: 30s;
   }
 }
+
+/* ------------------------------
+   TIDIO CHAT REAL FIX
+-------------------------------- */
+
+/* Target the actual Tidio widget */
+#tidio-chat,
+#tidio-chat-iframe,
+iframe[src*="tidio.co"] {
+  bottom: -35px !important;
+  right: -10px !important;
+  z-index: 30 !important;
+  transition: bottom 0.25s ease;
+}
+
+/* Jab cart visible ho */
+body.cart-visible #tidio-chat,
+body.cart-visible #tidio-chat-iframe,
+body.cart-visible iframe[src*="tidio.co"] {
+  bottom: 45px !important; /* Cart ke upar */
+}

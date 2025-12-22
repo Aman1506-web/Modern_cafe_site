@@ -3,6 +3,7 @@ import { Baloo_2, Inter } from "next/font/google";
 import "./globals.css";
 import { CartBottomBar } from "@/components/cart-bottom-bar";
 import OfferPopup from "@/components/OfferPopup";
+import Script from "next/script";
 
 const baloo = Baloo_2({
   variable: "--font-display",
@@ -35,6 +36,10 @@ export default function RootLayout({
       >
         {children}
         <OfferPopup /> 
+        <Script
+          src="//code.tidio.co/ych9pywstrdywc6o1la5xbnyzj1j9mrz.js"
+          strategy="afterInteractive"
+        />
         <CartBottomBar />
       </body>
     </html>

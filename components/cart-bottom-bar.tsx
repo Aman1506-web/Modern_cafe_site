@@ -2,7 +2,7 @@
 
 import { CartDrawer } from "@/components/cart-drawer";
 import { useCartStore } from "@/lib/cart-store";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 export function CartBottomBar() {
   const items = useCartStore((s) => s.items);
@@ -11,6 +11,19 @@ export function CartBottomBar() {
     const total = items.reduce((sum, item) => sum + item.quantity * item.price, 0);
     return { count, total };
   }, [items]);
+
+  // 🔑 ADD THIS EFFECT
+  useEffect(() => {
+    if (count > 0) {
+      document.body.classList.add("cart-visible");
+    } else {
+      document.body.classList.remove("cart-visible");
+    }
+
+    return () => {
+      document.body.classList.remove("cart-visible");
+    };
+  }, [count]);
 
   if (count === 0) return null;
 
