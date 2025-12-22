@@ -392,8 +392,8 @@ html {
 #tidio-chat,
 #tidio-chat-iframe,
 iframe[src*="tidio.co"] {
-  bottom: -35px !important;
-  right: -10px !important;
+  bottom: 16px !important;
+  right: 6px !important;
   z-index: 30 !important;
   transition: bottom 0.25s ease;
 }
