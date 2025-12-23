@@ -402,5 +402,5 @@ iframe[src*="tidio.co"] {
 body.cart-visible #tidio-chat,
 body.cart-visible #tidio-chat-iframe,
 body.cart-visible iframe[src*="tidio.co"] {
-  bottom: 45px !important; /* Cart ke upar */
+  bottom: 60px !important; /* Cart ke upar */
 }
